@@ -5,14 +5,19 @@
  * @author ak
  * @since 22.08.13 15:41
  **/
-use P4TQueue\storageEngines;
-use P4TQueue\queueTypes;
 class P4TQueue {
 
     /**
      * Some return status constants
      */
     const STATUS_OK = 200;
+    const STATUS_ERROR = 500;
+
+    /**
+     * @var
+     */
+    protected $queueHandler;
+    protected $queueName;
 
     /**
      * Returns a singleton queue of the selected type
@@ -21,21 +26,15 @@ class P4TQueue {
      * @thors \Exception
      */
     public function __construct($queueName){
+        $this->setQueueName($queueName);
 
-        //first some basic error handling
-        if(empty($queueName)){
-            throw new \Exception('You must provide a non-empty queue-name!');
-        }
-
-        //get the storage engine to work with
-        $storageEngine = $this->getStorageEngineForQueue();
-
-        //then create the reference point
+        //create the reference point
         //@2do implement dynamic queue loader, currently only one supported
-        $queueType = new queueTypes\Basic($storageEngine);
+        //also currently the default storage engine MongoDB is loaded
+        $this->queueHandler  = new Basic($this->getStorageEngineForQueue());
 
-        //send it back
-        return $queueType;
+        //send it back for those who like chaininig stuff
+        return $this->queueHandler;
     }
 
 
@@ -46,7 +45,32 @@ class P4TQueue {
      * @return int
      */
     public function push($message, Array $metaData){
-        return self::STATUS_OK;
+        if($this->queueHandler->push($message, $metaData)){
+            return self::STATUS_OK;
+        }
+        return self::STATUS_ERROR;
+    }
+
+
+    /**
+     * @param $queueName
+     *
+     * @throws Exception
+     */
+    private function setQueueName($queueName){
+        //first some basic error handling
+        if(empty($queueName)){
+            throw new \Exception('You must provide a non-empty queue-name!');
+        }
+        $this->queueName = (string)$queueName;
+    }
+
+
+    /**
+     * @return string
+     */
+    private function getQueueName(){
+        return $this->queueName;
     }
 
 
@@ -55,7 +79,7 @@ class P4TQueue {
      * currently defaults to mongodb
      */
     private function getStorageEngineForQueue(){
-        $storage = new storageEngines\MongoDB();
+        $storage = new MongoDBStorage($this->getQueueName());
         return $storage;
     }
 }
