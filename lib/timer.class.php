@@ -20,6 +20,6 @@ class timer {
         $microsecs = substr($microtime, 2, 8);
         $secs      = substr($microtime, 11);
         $endTime   = "$secs.$microsecs";
-        return round(($endTime - self::$time),8);
+        return round(($endTime - self::$time),4);
     }
 }

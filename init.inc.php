@@ -3,6 +3,7 @@
      * This is just a demo setup, so no magic here
      */
     require_once('lib/P4TQueue.class.php');
+    require_once('lib/P4TQueueRecord.class.php');
     require_once('lib/P4TMongo.class.php');
     require_once('lib/timer.class.php');
     require_once('lib/storageEngines/MongoDBStorage.class.php');
