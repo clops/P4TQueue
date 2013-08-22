@@ -8,8 +8,11 @@
 
     <h3>Things you can do</h3>
     <ul>
-        <li>Push 1000 random messages to the queue.</li>
+        <li>Push 10 000 random messages to the queue. In your console use the command: <span style="background-color:#eee"><tt>php push.php</tt></span></li>
+        <li>Process the items with a worker. In your console use the command: <span style="background-color:#eee"><tt>php worker.php</tt></span> feel free to start several instances</li>
     </ul>
+
+    <p><strong>Tested with 5 000 000 entries in the base collection, everything flying like charm.</strong></p>
 
     <h3>General Synopsis</h3>
     <script src="https://gist.github.com/clops/4e9aed1cdeb5141cfe5f.js"></script>

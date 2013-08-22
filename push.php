@@ -9,11 +9,12 @@
 
     //lets push 1000 random messages to the queue
     echo "Adding messages to the queue endlessly, press CNTRL+C to terminate\n\n";
-    $counter = 1; //this is the counter of thousands
+    $counter   = 1; //this is the counter of thousands
+    $increment = 10000;
 
     while($counter){
         timer::start();
-        $total = 1000;
+        $total = $increment;
         echo '[x] ';
         while($total){
             $m = rand(0,3);
@@ -47,8 +48,8 @@
                 $total--;
             }
         }
-        echo $counter*1000;
-        echo " messages written to queue; insetion took ".timer::end()." seconds.  // Total in queue: ".$queue->total();
+        echo $counter*$increment;
+        echo " messages written to queue; insetion took ".timer::end()." seconds.  // Total in queue: "; //.$queue->total();
         echo "\n";
         $counter++;
     }
