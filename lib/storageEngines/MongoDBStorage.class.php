@@ -21,7 +21,13 @@ class MongoDBStorage extends QueueStorageEngine{
      */
     public function __construct($queueName){
         parent::__construct($queueName);
+        $this->initStoreEngineWithHardcodedSettings();
+    }
 
+    /**
+     * Wrapper, will be deprecated once the lib is built into the P4T application
+     */
+    private function initStoreEngineWithHardcodedSettings(){
         //this is setup that should be done on the outside also,
         //but enough for this small testcase
         $this->db = new P4TMongo('mongodb://localhost');
