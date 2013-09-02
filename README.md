@@ -36,3 +36,16 @@ clops@semmel 16:53:53[~/Sites/p4t/P4TQueue] $ php worker.php
 [x] 2 is done! Memory: 912Kb
 [x] 3 is done! Memory: 912Kb
 ```
+
+### More Candy? ###
+
+Yes, want to watch the whole process with as little clutter and numbers jumping on the screen as possible? Sure thing:
+
+```
+clops@semmel 17:29:02[~/Sites/p4t/P4TQueue] $ php watch.php 
+Watching queue with Storage Path: MongoDB Collection queue_awesome, press CNTRL+C to terminate
+
+Queue Size: 154208
+Unprocessed: 13968
+0.0088 seconds 
+```
