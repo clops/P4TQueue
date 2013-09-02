@@ -24,7 +24,8 @@ class P4TQueue {
         //create the reference point
         //@2do implement dynamic queue loader, currently only one supported
         //also currently the default storage engine MongoDB is loaded
-        return new Basic(self::getStorageEngineForQueue());
+        $storageEngine = self::getStorageEngineForQueue();
+        return new Basic($storageEngine);
     }
 
     /**
