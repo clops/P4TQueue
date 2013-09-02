@@ -5,7 +5,10 @@
      */
     require_once('init.inc.php');
 
-    $queue  = P4TQueue::getQueue('awesome');
+    /**
+     * @var AbstractQueueType $queue
+     */
+    $queue  = P4TQueueDispatcher::getQueue('awesome');
 
     //lets push 1000 random messages to the queue
     echo "Adding messages to the queue endlessly, press CNTRL+C to terminate\n\n";

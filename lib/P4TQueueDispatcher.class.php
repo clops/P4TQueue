@@ -12,13 +12,13 @@ class P4TQueueDispatcher {
      */
     static $queueTypeReferences;
 
-    
+
     /**
      * @param string $queueName
      * @return AbstractQueueType
      * @throws Exception
      */
-    public static function getQueue($queueName='Basic'){
+    public static function getQueue($queueName, $queueType='Basic'){
 
         //basic bogus checks
         if(!is_string($queueName)){
@@ -33,7 +33,7 @@ class P4TQueueDispatcher {
         $queueName = ucfirst($queueName);
 
         if(!self::getQueueTypeReference($queueName)){
-            self::initQueueTypeReference($queueName);
+            self::initQueueTypeReference($queueName, $queueType);
         }
 
         return self::getQueueTypeReference($queueName);
@@ -43,12 +43,12 @@ class P4TQueueDispatcher {
     /**
      * @param string $queueName
      */
-    private static function initQueueTypeReference($queueName){
+    private static function initQueueTypeReference($queueName, $queueType){
         //create a storage engine
         $storageEngine = self::getStorageEngineForQueue($queueName);
 
-        //and a queue
-        self::$queueTypeReferences[$queueName] = new $queueName($storageEngine);
+        //and a queue (currently a Basic Queue handler only, this will be expanded too)
+        self::$queueTypeReferences[$queueName] = new $queueType($storageEngine);
     }
 
 

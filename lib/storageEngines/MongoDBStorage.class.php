@@ -79,8 +79,8 @@ class MongoDBStorage extends AbstractQueueStorageEngine{
             'update'        => array('$set' => array('locked' => 1)) //what to update
         ));
 
-        if(isset($feed[1]) and is_array($feed[1])){
-            $obj = $feed[1];
+        if(isset($feed[0]) and is_array($feed[0])){
+            $obj = $feed[0];
             return new P4TQueueRecord((string)$obj['_id'], $obj['message'], $obj['meta']);
         }
 
