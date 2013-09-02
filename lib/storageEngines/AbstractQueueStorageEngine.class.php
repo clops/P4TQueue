@@ -41,9 +41,14 @@ abstract class AbstractQueueStorageEngine {
     abstract public function pushMessageToQueue($message, Array $metaData, $schedule = null);
 
     /**
-     * @return mixed
+     * @return int
      */
-    abstract public function totalOpenMessagesInQueue();
+    abstract public function getTotalNumberOfOpenMessagesInQueue();
+
+    /**
+     * @return int
+     */
+    abstract public function getTotalNumberOfMessagesInQueue();
 
     /**
      * @return mixed
@@ -55,4 +60,9 @@ abstract class AbstractQueueStorageEngine {
      * @return mixed
      */
     abstract public function markRecordAsFinished(P4TQueueRecord $record);
+
+    /**
+     * @return string
+     */
+    abstract public function getStoragePath();
 }

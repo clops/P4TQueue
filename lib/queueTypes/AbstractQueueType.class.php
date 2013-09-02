@@ -87,4 +87,22 @@ abstract class AbstractQueueType {
         return $this->storageEngine->markRecordAsFinished($record);
     }
 
+
+    /**
+     * Useful for debugging and general info, not to be used in any logic please
+     *
+     * @return string
+     */
+    public function getStoragePath(){
+        return $this->storageEngine->getStoragePath();
+    }
+
+    public function getTotalQueueSize(){
+        return $this->storageEngine->getTotalNumberOfMessagesInQueue();
+    }
+
+    public function getTotalOpenQueueSize(){
+        return $this->storageEngine->getTotalNumberOfOpenMessagesInQueue();
+    }
+
 }

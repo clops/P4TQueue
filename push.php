@@ -11,6 +11,9 @@
     $queue  = P4TQueueDispatcher::getQueue('awesome');
 
     //lets push 1000 random messages to the queue
+    echo "Storage Path: ".$queue->getStoragePath()."\n".
+         "Queue Size: ".$queue->getTotalQueueSize()."\n".
+         "Unprocessed: ".$queue->getTotalOpenQueueSize()."\n";
     echo "Adding messages to the queue endlessly, press CNTRL+C to terminate\n\n";
     $counter   = 1; //this is the counter of thousands
     $increment = 10000;

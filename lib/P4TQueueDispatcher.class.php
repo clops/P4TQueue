@@ -14,7 +14,8 @@ class P4TQueueDispatcher {
 
 
     /**
-     * @param string $queueName
+     * @param $queueName
+     * @param string $queueType
      * @return AbstractQueueType
      * @throws Exception
      */
@@ -25,12 +26,20 @@ class P4TQueueDispatcher {
             throw new \Exception('The queue name MUST be a string!');
         }
 
+        if(!is_string($queueType)){
+            throw new \Exception('The queue type MUST be a string!');
+        }
+
         if(empty($queueName)){
             throw new \Exception('You must provide a non-empty queue-name!');
         }
 
+        if(empty($queueType)){
+            throw new \Exception('You must provide a non-empty queue-type!');
+        }
+
         //automagic naming convention adaption
-        $queueName = ucfirst($queueName);
+        $queueType = ucfirst($queueType);
 
         if(!self::getQueueTypeReference($queueName)){
             self::initQueueTypeReference($queueName, $queueType);
@@ -41,7 +50,8 @@ class P4TQueueDispatcher {
 
 
     /**
-     * @param string $queueName
+     * @param $queueName
+     * @param $queueType
      */
     private static function initQueueTypeReference($queueName, $queueType){
         //create a storage engine

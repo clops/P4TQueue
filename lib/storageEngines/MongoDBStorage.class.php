@@ -58,8 +58,15 @@ class MongoDBStorage extends AbstractQueueStorageEngine{
     /**
      * @return int
      */
-    public function totalOpenMessagesInQueue(){
+    public function getTotalNumberOfOpenMessagesInQueue(){
         return $this->totalMessageInQueue( array('done'=>0) );
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalNumberOfMessagesInQueue(){
+        return $this->totalMessageInQueue();
     }
 
 
@@ -97,6 +104,15 @@ class MongoDBStorage extends AbstractQueueStorageEngine{
         return $this->updateRecord($record, array('locked' => 0, 'done' => 1));
     }
 
+
+    /**
+     * Useful for logging, debugging and probably some stats
+     *
+     * @return string
+     */
+    public function getStoragePath(){
+        return 'MongoDB Collection '.$this->getCollectionName();
+    }
 
 
     /******** INTERNAL MAINTENANCE METHODS **********************************************
