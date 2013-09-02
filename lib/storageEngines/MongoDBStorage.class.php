@@ -1,10 +1,11 @@
 <?php
 /**
+ * MongoDBStorage
  * @author  ak
- * @since   22.08.13 15:53
+ *
+ * This whole package is experimental, beware
  */
-
-class MongoDBStorage extends QueueStorageEngine{
+class MongoDBStorage extends AbstractQueueStorageEngine{
 
     /**
      * @var P4TMongo $db

@@ -4,16 +4,7 @@
  * @since   22.08.13 15:45
  */
 
-class Basic {
-
-    protected $storageEngine;
-
-    /**
-     * @param MongoDBStorage $engine
-     */
-    public function __construct(MongoDBStorage $engine){
-        $this->storageEngine = $engine;
-    }
+class Basic extends AbstractQueueType{
 
     /**
      * @param       $message
