@@ -19,12 +19,12 @@ Awesome
 In one terminal instance start and run the push process to add items to a queue. On my mid-2010 mbp I can get 10 000 items pushed to the queue within about 3-4 seconds
 
 ```shell
-clops@semmel 16:59:27[~/Sites/p4t/P4TQueue] $ php push.php
+clops@semmel 16:53:27[~/Sites/p4t/P4TQueue] $ php push.php
 Adding messages to the queue endlessly, press CNTRL+C to terminate
 
-[x] 10000 messages written to queue; insetion took 3.1271 seconds.  // Total in queue: 
-[x] 20000 messages written to queue; insetion took 3.1998 seconds.  // Total in queue: 
-[x] 30000 messages written to queue; insetion took 3.095 seconds.  // Total in queue: 
+[x] 10000 messages written to queue; insetion took 3.1271 seconds.  
+[x] 20000 messages written to queue; insetion took 3.1998 seconds.  
+[x] 30000 messages written to queue; insetion took 3.095 seconds.  
 ```
 
 In a parallel terminal session start a consumption worker (actually, feel free to do this N times in parallel). On the same MBP I manage to process around 2K records per second per worker. Adding more workers slows down the average per worker throughput, but having more CPU cores helps here. Really.
