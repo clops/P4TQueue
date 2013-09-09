@@ -11,9 +11,11 @@
     $counter = 1;
     while($record = $queue->consumeItemFromQueue()){
         if($record instanceof P4TQueueRecord){
-            echo "[x] ".$counter." is ";
+            $echo  = "[x] ".$counter." is ";
             $queue->process($record); // has its own handlers, transaction wrap and lock status monitoring
-            echo "done! Memory: ".round(memory_get_usage()/1024)."Kb\n";
+            $echo .= "done! Memory: ".round(memory_get_usage()/1024)."Kb";
+            echo $echo;
+            echo "\033[".strlen($echo)."D";
             $counter++;
         }else{
             echo ".";

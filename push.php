@@ -21,7 +21,7 @@
     while($counter){
         timer::start();
         $total = $increment;
-        echo '[x] ';
+
         while($total){
             $m = rand(0,3);
             switch($m){
@@ -54,9 +54,12 @@
                 $total--;
             }
         }
-        echo $counter*$increment;
-        echo " messages written to queue; insetion took ".timer::end()." seconds.  // Total in queue: "; //.$queue->total();
-        echo "\n";
+        $echo  = $counter*$increment;
+        $echo .= " messages written to queue; insetion took ".timer::end()." seconds."; //"  // Total in queue: "; //.$queue->total();
+
+        echo $echo;
+        echo "\033[".strlen($echo)."D";
+
         $counter++;
     }
 
