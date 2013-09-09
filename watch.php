@@ -14,9 +14,12 @@
 
     while($sentinel){
         timer::start();
-        echo "Queue Size: ".$queue->getTotalQueueSize()."\n".
-             "Unprocessed: ".$queue->getTotalOpenQueueSize()."\n";
-        echo timer::end()." seconds \n\n";
+        $echo = "Queue Size:  ".sprintf('%08d', $queue->getTotalQueueSize())." | ".
+                "Unprocessed: ".sprintf('%08d', $queue->getTotalOpenQueueSize());
+        echo $echo;
         sleep(1);
+
+        //delete all the previous stuff
+        echo "\033[".strlen($echo)."D";
     }
 
